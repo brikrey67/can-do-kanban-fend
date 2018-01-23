@@ -5,6 +5,7 @@ import "./App.css";
 import Signup from "../Signup/Signup.js";
 import Login from "../Login/Login.js";
 import Buckets from "../Buckets/Buckets.js";
+import BucketDetail from "../BucketDetail/BucketDetail.js";
 
 import { Route, Link, Redirect, Switch } from "react-router-dom";
 import axios from "axios";
@@ -47,15 +48,8 @@ class App extends Component {
     super(props);
     // initialize state
     this.state = {
-      buckets: [],
-      targetBucket: null
+      buckets: []
     };
-  }
-
-  setBucket(data) {
-    this.setState({
-      targetStock: data
-    });
   }
 
   // from react-router lab
@@ -83,6 +77,7 @@ class App extends Component {
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/login" render={() => <Login />} />
             <Route
+              exact
               path="/buckets"
               render={props => (
                 <Buckets
@@ -92,7 +87,8 @@ class App extends Component {
                 />
               )}
             />
-            {/* <Route path="/*" render={() => <Redirect to="/buckets" />} /> */}
+            <Route path="/buckets/:bucket" render={props => <BucketDetail />} />
+            <Route path="/*" render={() => <Redirect to="/buckets" />} />
           </Switch>
         </main>
       </div>

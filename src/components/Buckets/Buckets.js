@@ -13,12 +13,12 @@ class Buckets extends Component {
   }
 
   render() {
-    let results = this.props.buckets.map((bucket, index) => {
+    let buckets = this.props.buckets.map((bucket, index) => {
       return (
         <div id="buckets-body" key={index}>
           <p>
             <Link
-              to={`${this.props.match.url}/:${bucket.bTitle}`}
+              to={`${this.props.match.url}/${bucket.bTitle}`}
               onClick={this.props.setBucket}
             >
               <span id="bucket-name">{bucket.bTitle}</span>{" "}
@@ -27,7 +27,7 @@ class Buckets extends Component {
         </div>
       );
     });
-    return <div>{results}</div>;
+    return <div>{buckets}</div>;
   }
 }
 
