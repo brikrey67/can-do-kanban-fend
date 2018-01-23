@@ -8,7 +8,7 @@ import Buckets from "../Buckets/Buckets.js";
 import BucketDetail from "../BucketDetail/BucketDetail.js";
 
 import { Route, Link, Redirect, Switch } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import "./App.css";
 
 // const buckets = [
@@ -47,9 +47,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     // initialize state
-    this.state = {
-      buckets: []
-    };
+    // this.state = {
+    //   buckets: []
+    // };
   }
 
   // setBucket(data) {
@@ -59,15 +59,15 @@ class App extends Component {
   // }
 
   // from react-router lab
-  componentDidMount() {
-    axios
-      .get("https://can-do-kanban-bend.herokuapp.com/bucket")
-      .then(response => {
-        this.setState({
-          buckets: response.data
-        });
-      });
-  }
+  // componentDidMount() {
+  //   axios
+  //     .get("https://can-do-kanban-bend.herokuapp.com/bucket")
+  //     .then(response => {
+  //       this.setState({
+  //         buckets: response.data
+  //       });
+  //     });
+  // }
 
   render() {
     return (
@@ -82,13 +82,8 @@ class App extends Component {
           <Switch>
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/login" render={() => <Login />} />
-            <Route
-              exact
-              path="/buckets"
-              render={props => (
-                <Buckets {...props} buckets={this.state.buckets} />
-              )}
-            />
+            {/* <Route exact path="/buckets" render={props => <Buckets {...props} buckets={this.state.buckets} />} /> */}
+            <Route exact path="/buckets" component={Buckets} />
             {/* <Route
               path="/buckets/:bucket"
               render={props => <BucketDetail {...props} />}
