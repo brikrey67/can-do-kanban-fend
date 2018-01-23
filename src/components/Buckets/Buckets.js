@@ -17,7 +17,10 @@ class Buckets extends Component {
       return (
         <div id="buckets-body" key={index}>
           <p>
-            <Link to={`${this.props.match.url}/:${bucket.bTitle}`}>
+            <Link
+              to={`${this.props.match.url}/:${bucket.bTitle}`}
+              onClick={this.props.setBucket}
+            >
               <span id="bucket-name">{bucket.bTitle}</span>{" "}
             </Link>- <span id="bucket-desc">{bucket.bDesc}</span>
           </p>

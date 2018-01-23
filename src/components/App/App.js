@@ -31,6 +31,13 @@ const buckets = [
     bDesc: "bucket of tasks that are being activily worked on",
     intCrit: "tasks or ideas that will be taken on next",
     exCrit: "tasks or ideas have been completed"
+  },
+  {
+    bOrder: 4,
+    bTitle: "completed",
+    bDesc: "bucket of tasks that have been completed",
+    intCrit: "tasks or ideas that have no remaining work",
+    exCrit: "tasks or ideas can be archived"
   }
 ];
 
