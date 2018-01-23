@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
+// import { Redirect } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import "./BucketDetail.css";
 
 class BucketDetail extends Component {
@@ -9,10 +11,10 @@ class BucketDetail extends Component {
       bucketDetail: {},
       targetBucket: this.props.match.params.bTitle
     };
+    this.bucketDelete = this.bucketDelete.bind(this);
   }
 
   componentDidMount() {
-    console.log("PARAMS: " + this.state.targetBucket);
     axios
       .get(
         "https://can-do-kanban-bend.herokuapp.com/bucket/" +
@@ -22,6 +24,19 @@ class BucketDetail extends Component {
         this.setState({
           bucketDetail: response.data
         });
+      });
+  }
+
+  // redirect based on: https://stackoverflow.com/questions/34735580/how-to-do-a-redirect-to-another-route-with-react-router
+  bucketDelete(e) {
+    e.preventDefault();
+    axios
+      .delete(
+        "https://can-do-kanban-bend.herokuapp.com/bucket/" +
+          this.state.targetBucket
+      )
+      .then(() => {
+        this.props.history.push("/buckets");
       });
   }
 
@@ -51,6 +66,10 @@ class BucketDetail extends Component {
             <span id="label">Exit Criteria:</span>{" "}
             {this.state.bucketDetail.exCrit}
           </p>
+
+          <form onSubmit={this.bucketDelete}>
+            <input id="bucket-form" type="submit" value="Delete Bucket" />
+          </form>
         </div>
       </div>
     );
