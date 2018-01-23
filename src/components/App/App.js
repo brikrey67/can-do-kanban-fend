@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import logo from "../../logo.svg";
+// import logo from "../../logo.svg";
 import "./App.css";
 
 import Signup from "../Signup/Signup.js";
@@ -52,6 +52,12 @@ class App extends Component {
     };
   }
 
+  // setBucket(data) {
+  //   this.setState({
+  //     targetBucket: data
+  //   });
+  // }
+
   // from react-router lab
   componentDidMount() {
     axios
@@ -80,15 +86,16 @@ class App extends Component {
               exact
               path="/buckets"
               render={props => (
-                <Buckets
-                  {...props}
-                  setBucket={data => this.setBucket(data)}
-                  buckets={this.state.buckets}
-                />
+                <Buckets {...props} buckets={this.state.buckets} />
               )}
             />
-            <Route path="/buckets/:bucket" render={props => <BucketDetail />} />
-            <Route path="/*" render={() => <Redirect to="/buckets" />} />
+            {/* <Route
+              path="/buckets/:bucket"
+              render={props => <BucketDetail {...props} />}
+            /> */}
+
+            <Route path="/buckets/:bTitle" component={BucketDetail} />
+            {/* <Route path="/*" render={() => <Redirect to="/buckets" />} /> */}
           </Switch>
         </main>
       </div>

@@ -1,16 +1,16 @@
 import React, { Component } from "react";
-import App from "../App/App.js";
+// import App from "../App/App.js";
 import "./Buckets.css";
 import { Link } from "react-router-dom";
 
 class Buckets extends Component {
-  constructor(props) {
-    super(props);
-    // initialize state
-    // this.state = {
-    //   xxx: null
-    // };
-  }
+  // constructor(props) {
+  //   super(props);
+  //   // initialize state
+  //   // this.state = {
+  //   //   xxx: null
+  //   // };
+  // }
 
   render() {
     let buckets = this.props.buckets.map((bucket, index) => {

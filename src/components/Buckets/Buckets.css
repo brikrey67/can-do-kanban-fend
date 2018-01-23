@@ -1,9 +1,13 @@
 #buckets-body {
   text-align: left;
+  padding-left: 10px;
+  padding-top: 10px;
+  margin: 20px;
 }
 
 #bucket-name {
   text-transform: uppercase;
+  font-weight: bold;
 }
 
 #bucket-desc {
