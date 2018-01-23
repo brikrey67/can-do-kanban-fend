@@ -1,0 +1,11 @@
+#buckets-body {
+  text-align: left;
+}
+
+#bucket-name {
+  text-transform: uppercase;
+}
+
+#bucket-desc {
+  text-transform: lowercase;
+}
