@@ -20,7 +20,8 @@ class BucketAdd extends Component {
       title: "",
       desc: "",
       enterCrit: "",
-      exitCrit: ""
+      exitCrit: "",
+      newBucket: {}
     };
 
     this.onAddBucketSubmit = this.onAddBucketSubmit.bind(this);
@@ -47,24 +48,40 @@ class BucketAdd extends Component {
     });
   }
 
-  handleExitCrit(e) {
-    this.setState({ exitCrit: e.target.value });
-  }
-
   handleEnterCrit(e) {
     this.setState({ enterCrit: e.target.value });
   }
 
+  handleExitCrit(e) {
+    this.setState({ exitCrit: e.target.value });
+    // this.setState({
+    //   newBucket: {
+    //     bOrder: this.state.order,
+    //     bTitle: this.state.title,
+    //     bDesc: this.state.desc,
+    //     entCrit: this.state.enterCrit,
+    //     exCrit: this.state.exitCrit
+    //   }
+    // });
+  }
+
   onAddBucketSubmit() {
     // e.preventDefault();
-    axios
-      .post("https://can-do-kanban-bend.herokuapp.com/bucket", {
+    this.setState({
+      newBucket: {
         bOrder: this.state.order,
         bTitle: this.state.title,
         bDesc: this.state.desc,
         entCrit: this.state.enterCrit,
         exCrit: this.state.exitCrit
-      })
+      }
+    });
+
+    axios
+      .post(
+        "https://can-do-kanban-bend.herokuapp.com/bucket",
+        this.state.newBucket
+      )
       .then(() => {
         this.props.history.push("/buckets");
       });
@@ -74,7 +91,7 @@ class BucketAdd extends Component {
     return (
       <div className="form" id="bucket-add-body">
         <hr />
-        <form onSubmit={this.onAddBucketSubmit}>
+        <Form onSubmit={this.onAddBucketSubmit}>
           <FormGroup>
             <Label for="orderInput">Order:</Label>
             <Input
@@ -116,7 +133,7 @@ class BucketAdd extends Component {
           </FormGroup>
 
           <FormGroup>
-            <Label for="exitCritInput">Entrance Criteria:</Label>
+            <Label for="exitCritInput">Exit Criteria:</Label>
             <Input
               type="textarea"
               name="exitCrit"
@@ -126,7 +143,7 @@ class BucketAdd extends Component {
           </FormGroup>
 
           <input type="submit" value="Add Bucket" />
-        </form>
+        </Form>
       </div>
     );
   }
