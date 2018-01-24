@@ -3,6 +3,7 @@ import axios from "axios";
 // import App from "../App/App.js";
 import "./Buckets.css";
 import { Link } from "react-router-dom";
+import BucketAdd from "../BucketAdd/BucketAdd.js";
 
 class Buckets extends Component {
   constructor(props) {
@@ -38,7 +39,12 @@ class Buckets extends Component {
         </div>
       );
     });
-    return <div>{buckets}</div>;
+    return (
+      <div>
+        {buckets}
+        <BucketAdd />
+      </div>
+    );
   }
 }
 
