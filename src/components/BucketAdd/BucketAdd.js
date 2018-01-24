@@ -55,8 +55,8 @@ class BucketAdd extends Component {
     this.setState({ enterCrit: e.target.value });
   }
 
-  onAddBucketSubmit(e) {
-    e.preventDefault();
+  onAddBucketSubmit() {
+    // e.preventDefault();
     axios
       .post("https://can-do-kanban-bend.herokuapp.com/bucket", {
         bOrder: this.state.order,
