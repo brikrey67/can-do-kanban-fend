@@ -83,7 +83,12 @@ class App extends Component {
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/login" render={() => <Login />} />
             {/* <Route exact path="/buckets" render={props => <Buckets {...props} buckets={this.state.buckets} />} /> */}
-            <Route exact path="/buckets" component={Buckets} />
+            {/* <Route exact path="/buckets" component={Buckets} /> */}
+            <Route
+              exact
+              path="/buckets"
+              render={props => <Buckets {...props} />}
+            />
             {/* <Route
               path="/buckets/:bucket"
               render={props => <BucketDetail {...props} />}

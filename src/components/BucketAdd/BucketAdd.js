@@ -20,69 +20,41 @@ class BucketAdd extends Component {
       title: "",
       desc: "",
       enterCrit: "",
-      exitCrit: "",
-      newBucket: {}
+      exitCrit: ""
+      // newBucket: {}
     };
 
     this.onAddBucketSubmit = this.onAddBucketSubmit.bind(this);
-    this.handleOrder = this.handleOrder.bind(this);
-    this.handleTitle = this.handleTitle.bind(this);
-    this.handleDesc = this.handleDesc.bind(this);
-    this.handleExitCrit = this.handleExitCrit.bind(this);
-    this.handleEnterCrit = this.handleEnterCrit.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
   }
 
-  handleOrder(e) {
+  // sourced from https://reactjs.org/docs/forms.html#handling-multiple-inputs
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
     this.setState({
-      order: e.target.value
+      [name]: value
     });
   }
 
-  handleTitle(e) {
-    this.setState({ title: e.target.value });
+  componentDidUpdate() {
+    let newBucket = {
+      bOrder: this.state.order,
+      bTitle: this.state.title,
+      bDesc: this.state.desc,
+      intCrit: this.state.enterCrit,
+      exCrit: this.state.exitCrit
+    };
   }
 
-  handleDesc(e) {
-    this.setState({
-      desc: e.target.value
-    });
-  }
-
-  handleEnterCrit(e) {
-    this.setState({ enterCrit: e.target.value });
-  }
-
-  handleExitCrit(e) {
-    this.setState({ exitCrit: e.target.value });
-    // this.setState({
-    //   newBucket: {
-    //     bOrder: this.state.order,
-    //     bTitle: this.state.title,
-    //     bDesc: this.state.desc,
-    //     entCrit: this.state.enterCrit,
-    //     exCrit: this.state.exitCrit
-    //   }
-    // });
-  }
-
-  onAddBucketSubmit() {
+  onAddBucketSubmit(e) {
     // e.preventDefault();
-    this.setState({
-      newBucket: {
-        bOrder: this.state.order,
-        bTitle: this.state.title,
-        bDesc: this.state.desc,
-        entCrit: this.state.enterCrit,
-        exCrit: this.state.exitCrit
-      }
-    });
-
     axios
-      .post(
-        "https://can-do-kanban-bend.herokuapp.com/bucket",
-        this.state.newBucket
-      )
-      .then(() => {
+      .post("https://can-do-kanban-bend.herokuapp.com/bucket", this.newBucket)
+      .then(data => {
+        console.log(data);
         this.props.history.push("/buckets");
       });
   }
@@ -98,7 +70,7 @@ class BucketAdd extends Component {
               type="number"
               name="order"
               id="orderInput"
-              onChange={this.handleOrder}
+              onChange={this.handleInputChange}
             />
           </FormGroup>
 
@@ -108,7 +80,7 @@ class BucketAdd extends Component {
               type="text"
               name="title"
               id="titleInput"
-              onChange={this.handleTitle}
+              onChange={this.handleInputChange}
             />
           </FormGroup>
 
@@ -118,7 +90,7 @@ class BucketAdd extends Component {
               type="textarea"
               name="desc"
               id="descInput"
-              onChange={this.handleDesc}
+              onChange={this.handleInputChange}
             />
           </FormGroup>
 
@@ -128,7 +100,7 @@ class BucketAdd extends Component {
               type="textarea"
               name="enterCrit"
               id="enterCritInput"
-              onChange={this.handleEnterCrit}
+              onChange={this.handleInputChange}
             />
           </FormGroup>
 
@@ -138,7 +110,7 @@ class BucketAdd extends Component {
               type="textarea"
               name="exitCrit"
               id="exitCritInput"
-              onChange={this.handleExitCrit}
+              onChange={this.handleInputChange}
             />
           </FormGroup>
 

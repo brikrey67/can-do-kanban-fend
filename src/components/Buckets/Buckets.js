@@ -25,6 +25,7 @@ class Buckets extends Component {
   }
 
   render() {
+    let { history } = this.props;
     let buckets = this.state.buckets.map((bucket, index) => {
       return (
         <div id="buckets-body" key={index}>
@@ -42,7 +43,7 @@ class Buckets extends Component {
     return (
       <div>
         {buckets}
-        <BucketAdd />
+        <BucketAdd history={history} />
       </div>
     );
   }
