@@ -32,7 +32,6 @@ class Buckets extends Component {
           <p>
             <Link
               to={`${this.props.match.url}/${bucket.bTitle}`}
-              onClick={this.props.setBucket}
               className="text-info"
             >
               {bucket.bTitle}

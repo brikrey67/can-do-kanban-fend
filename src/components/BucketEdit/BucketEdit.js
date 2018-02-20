@@ -152,7 +152,7 @@ class BucketEdit extends Component {
           </Form>
           <hr />
         </Container>
-        <TaskList targetBucket={this.state.targetBucket} />
+        <TaskList targetBucket={this.state.targetBucket} {...this.props} />
       </div>
     );
   }

@@ -5,6 +5,7 @@ import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Progress } from "reactstrap";
 import TaskAdd from "../TaskAdd/TaskAdd.js";
+import TaskEdit from "../TaskEdit/TaskEdit.js";
 
 class TaskList extends Component {
   constructor(props) {
@@ -56,8 +57,7 @@ class TaskList extends Component {
           <Row>
             <Col xs="4">
               <Link
-                to={`${BENDURL}/bucket/${this.props.targetBucket}/${task._id}`}
-                onClick={this.props.setBucket}
+                to={`${this.props.match.url}/${task._id}`}
                 className="text-info"
               >
                 {task.tTitle}

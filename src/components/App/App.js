@@ -5,6 +5,7 @@ import About from "../About/About.js";
 import Buckets from "../Buckets/Buckets.js";
 // import BucketDetail from "../BucketDetail/BucketDetail.js";
 import BucketEdit from "../BucketEdit/BucketEdit.js";
+import TaskEdit from "../TaskEdit/TaskEdit.js";
 
 import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
@@ -62,6 +63,10 @@ class App extends Component {
             <Route
               path="/buckets/:bTitle"
               render={props => <BucketEdit {...props} />}
+            />
+            <Route
+              path="/buckets/:bTitle/:_id"
+              render={props => <TaskEdit {...props} />}
             />
 
             <Route path="/*" render={() => <Redirect to="/buckets" />} />
