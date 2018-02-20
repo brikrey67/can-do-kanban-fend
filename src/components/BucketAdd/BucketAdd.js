@@ -9,6 +9,8 @@ import {
   FormGroup,
   Container,
   Collapse,
+  Row,
+  Col,
   Label,
   Input
 } from "reactstrap";
@@ -74,57 +76,69 @@ class BucketAdd extends Component {
           <hr />
           <Collapse isOpen={this.state.collapse}>
             <Form onSubmit={this.onAddBucketSubmit}>
-              <FormGroup>
-                <Label for="orderInput">order:</Label>
-                <Input
-                  type="number"
-                  name="bOrder"
-                  id="orderInput"
-                  required="true"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="titleInput">title:</Label>
-                <Input
-                  type="text"
-                  name="bTitle"
-                  id="titleInput"
-                  required="true"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="descInput">description:</Label>
-                <Input
-                  type="textarea"
-                  name="bDesc"
-                  id="descInput"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="enterCritInput">entrance criteria:</Label>
-                <Input
-                  type="textarea"
-                  name="intCrit"
-                  id="enterCritInput"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="exitCritInput">exit criteria:</Label>
-                <Input
-                  type="textarea"
-                  name="exCrit"
-                  id="exitCritInput"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
+              <Row>
+                <Col xs="3">
+                  <FormGroup>
+                    <Label for="orderInput">order:</Label>
+                    <Input
+                      type="number"
+                      name="bOrder"
+                      id="orderInput"
+                      required="true"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs="9">
+                  <FormGroup>
+                    <Label for="titleInput">title:</Label>
+                    <Input
+                      type="text"
+                      name="bTitle"
+                      id="titleInput"
+                      required="true"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label for="descInput">description:</Label>
+                    <Input
+                      type="textarea"
+                      name="bDesc"
+                      id="descInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="enterCritInput">entrance criteria:</Label>
+                    <Input
+                      type="textarea"
+                      name="intCrit"
+                      id="enterCritInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="exitCritInput">exit criteria:</Label>
+                    <Input
+                      type="textarea"
+                      name="exCrit"
+                      id="exitCritInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
               <Button className="btn btn-secondary" type="submit">
                 add bucket
               </Button>

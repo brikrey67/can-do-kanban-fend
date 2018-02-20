@@ -89,7 +89,7 @@ class BucketEdit extends Component {
         <Container>
           <Form onSubmit={this.onEditBucketSubmit}>
             <Row>
-              <Col>
+              <Col xs="3">
                 <FormGroup>
                   <Label for="orderInput">order:</Label>
                   <Input
@@ -100,6 +100,8 @@ class BucketEdit extends Component {
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
+              </Col>
+              <Col xs="9">
                 <FormGroup>
                   <Label for="titleInput">title:</Label>
                   <Input
@@ -110,6 +112,10 @@ class BucketEdit extends Component {
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="12">
                 <FormGroup>
                   <Label for="descInput">description:</Label>
                   <Input
@@ -120,6 +126,10 @@ class BucketEdit extends Component {
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
+              </Col>
+            </Row>
+            <Row>
+              <Col xs="6">
                 <FormGroup>
                   <Label for="intCritInput">enterance criteria:</Label>
                   <Input
@@ -130,6 +140,8 @@ class BucketEdit extends Component {
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
+              </Col>
+              <Col xs="6">
                 <FormGroup>
                   <Label for="exCritInput">exit criteria:</Label>
                   <Input

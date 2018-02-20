@@ -89,7 +89,7 @@ class TaskEdit extends Component {
         this.editTask
       )
       .then(data => {
-        console.log(data);
+        console.log("HERE WE ARE");
         this.props.history.push("/buckets/" + this.state.targetBucket);
       });
   }
