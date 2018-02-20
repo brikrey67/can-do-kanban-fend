@@ -3,9 +3,10 @@ import "./App.css";
 
 import About from "../About/About.js";
 import Buckets from "../Buckets/Buckets.js";
-import BucketDetail from "../BucketDetail/BucketDetail.js";
+// import BucketDetail from "../BucketDetail/BucketDetail.js";
+import BucketEdit from "../BucketEdit/BucketEdit.js";
 
-import { Route, Link, Switch, Redirect } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
 import {
@@ -58,7 +59,7 @@ class App extends Component {
               path="/buckets"
               render={props => <Buckets {...props} />}
             />
-            <Route path="/buckets/:bTitle" component={BucketDetail} />
+            <Route path="/buckets/:bTitle" component={BucketEdit} />
             <Route path="/*" render={() => <Redirect to="/buckets" />} />
           </Switch>
         </main>

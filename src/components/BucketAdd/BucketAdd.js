@@ -2,28 +2,26 @@ import React, { Component } from "react";
 import "./BucketAdd.css";
 import axios from "axios";
 import BENDURL from "../../constants.js";
-import { withRouter } from "react-router-dom";
+// import { withRouter } from "react-router-dom";
 import {
-  Col,
   Button,
   Form,
   FormGroup,
   Container,
   Collapse,
   Label,
-  Input,
-  FormText
+  Input
 } from "reactstrap";
 
 class BucketAdd extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      order: 0,
-      title: "",
-      desc: "",
-      enterCrit: "",
-      exitCrit: "",
+      bOrder: 0,
+      bTitle: "",
+      bDesc: "",
+      intCrit: "",
+      exCrit: "",
       collapse: false
     };
 
@@ -45,11 +43,11 @@ class BucketAdd extends Component {
 
   componentDidUpdate() {
     this.newBucket = {
-      bOrder: this.state.order,
-      bTitle: this.state.title,
-      bDesc: this.state.desc,
-      intCrit: this.state.enterCrit,
-      exCrit: this.state.exitCrit
+      bOrder: this.state.bOrder,
+      bTitle: this.state.bTitle,
+      bDesc: this.state.bDesc,
+      intCrit: this.state.intCrit,
+      exCrit: this.state.exCrit
     };
   }
 
@@ -80,8 +78,9 @@ class BucketAdd extends Component {
                 <Label for="orderInput">order:</Label>
                 <Input
                   type="number"
-                  name="order"
+                  name="bOrder"
                   id="orderInput"
+                  required="true"
                   onChange={this.handleInputChange}
                 />
               </FormGroup>
@@ -90,8 +89,9 @@ class BucketAdd extends Component {
                 <Label for="titleInput">title:</Label>
                 <Input
                   type="text"
-                  name="title"
+                  name="bTitle"
                   id="titleInput"
+                  required="true"
                   onChange={this.handleInputChange}
                 />
               </FormGroup>
@@ -100,7 +100,7 @@ class BucketAdd extends Component {
                 <Label for="descInput">description:</Label>
                 <Input
                   type="textarea"
-                  name="desc"
+                  name="bDesc"
                   id="descInput"
                   onChange={this.handleInputChange}
                 />
@@ -110,7 +110,7 @@ class BucketAdd extends Component {
                 <Label for="enterCritInput">entrance criteria:</Label>
                 <Input
                   type="textarea"
-                  name="enterCrit"
+                  name="intCrit"
                   id="enterCritInput"
                   onChange={this.handleInputChange}
                 />
@@ -120,14 +120,14 @@ class BucketAdd extends Component {
                 <Label for="exitCritInput">exit criteria:</Label>
                 <Input
                   type="textarea"
-                  name="exitCrit"
+                  name="exCrit"
                   id="exitCritInput"
                   onChange={this.handleInputChange}
                 />
               </FormGroup>
-              <button className="btn btn-secondary" type="submit">
+              <Button className="btn btn-secondary" type="submit">
                 add bucket
-              </button>
+              </Button>
             </Form>
           </Collapse>
         </Container>
