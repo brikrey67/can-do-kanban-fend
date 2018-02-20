@@ -61,6 +61,7 @@ class App extends Component {
               render={props => <Buckets {...props} />}
             />
             <Route
+              exact
               path="/buckets/:bTitle"
               render={props => <BucketEdit {...props} />}
             />

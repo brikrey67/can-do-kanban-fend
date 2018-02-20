@@ -6,6 +6,8 @@ import BENDURL from "../../constants.js";
 import {
   Button,
   Form,
+  Row,
+  Col,
   FormGroup,
   Container,
   Collapse,
@@ -79,85 +81,99 @@ class TaskAdd extends Component {
           <hr />
           <Collapse isOpen={this.state.collapse}>
             <Form onSubmit={this.onAddTaskSubmit}>
-              <FormGroup>
-                <Label for="titleInput">title:</Label>
-                <Input
-                  type="text"
-                  name="tTitle"
-                  id="titleInput"
-                  required="true"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="descInput">description:</Label>
-                <Input
-                  type="textarea"
-                  name="tDesc"
-                  id="descInput"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="impInput">importance:</Label>
-                <Input
-                  type="select"
-                  name="importance"
-                  id="impInput"
-                  onChange={this.handleInputChange}
-                >
-                  <option>Select importance...</option>
-                  <option>Very Low</option>
-                  <option>Low </option>
-                  <option>Moderate</option>
-                  <option>High</option>
-                  <option>Very High</option>
-                  <option>Critical</option>
-                </Input>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="pointsInput">points:</Label>
-                <Input
-                  type="select"
-                  name="points"
-                  id="pointsInput"
-                  onChange={this.handleInputChange}
-                >
-                  <option>Estimate points...</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>5</option>
-                  <option>8</option>
-                  <option>13</option>
-                  <option>21</option>
-                  <option>34</option>
-                </Input>
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="statusInput">status:</Label>
-                <Input
-                  type="number"
-                  name="status"
-                  id="statusInput"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label for="dueDateInput">due date:</Label>
-                <Input
-                  type="date"
-                  name="dueDate"
-                  id="dueDateInput"
-                  onChange={this.handleInputChange}
-                />
-              </FormGroup>
-
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label for="titleInput">title:</Label>
+                    <Input
+                      type="text"
+                      name="tTitle"
+                      id="titleInput"
+                      required="true"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label for="descInput">description:</Label>
+                    <Input
+                      type="textarea"
+                      name="tDesc"
+                      id="descInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="impInput">importance:</Label>
+                    <Input
+                      type="select"
+                      name="importance"
+                      id="impInput"
+                      onChange={this.handleInputChange}
+                    >
+                      <option>Select importance...</option>
+                      <option>Very Low</option>
+                      <option>Low </option>
+                      <option>Moderate</option>
+                      <option>High</option>
+                      <option>Very High</option>
+                      <option>Critical</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="pointsInput">points:</Label>
+                    <Input
+                      type="select"
+                      name="points"
+                      id="pointsInput"
+                      onChange={this.handleInputChange}
+                    >
+                      <option>Estimate points...</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>5</option>
+                      <option>8</option>
+                      <option>13</option>
+                      <option>21</option>
+                      <option>34</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="statusInput">status:</Label>
+                    <Input
+                      type="number"
+                      name="status"
+                      id="statusInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="dueDateInput">due date:</Label>
+                    <Input
+                      type="date"
+                      name="dueDate"
+                      id="dueDateInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
               <Button className="btn btn-secondary" type="submit">
                 add task
               </Button>
