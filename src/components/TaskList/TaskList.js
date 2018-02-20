@@ -3,8 +3,7 @@ import axios from "axios";
 import "./TaskList.css";
 import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
-import TaskAdd from "../TaskAdd/TaskAdd.js";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Progress } from "reactstrap";
 
 class TaskList extends Component {
   constructor(props) {
@@ -40,7 +39,6 @@ class TaskList extends Component {
   }
 
   render() {
-    console.log("XXX " + this.state.addedTask);
     let { history } = this.props;
     let tasks = this.state.tasks.map((task, index) => {
       return (
@@ -57,7 +55,13 @@ class TaskList extends Component {
             </Col>
             <Col xs="2">{task.importance}</Col>
             <Col xs="2">{task.points}</Col>
-            <Col xs="2">{task.status}</Col>
+            <Col xs="2">
+              <div>
+                <Progress color="info" value={task.status}>
+                  {task.status}
+                </Progress>
+              </div>
+            </Col>
             <Col xs="2">{task.dueDate}</Col>
           </Row>
         </div>
@@ -84,7 +88,6 @@ class TaskList extends Component {
             </Col>
           </Row>
           {tasks}
-          {/* <TaskAdd history={history} /> */}
         </Container>
       </div>
     );

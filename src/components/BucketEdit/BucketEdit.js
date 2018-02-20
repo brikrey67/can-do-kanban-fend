@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./BucketEdit.css";
 import axios from "axios";
 import TaskList from "../TaskList/TaskList.js";
+import TaskAdd from "../TaskAdd/TaskAdd.js";
 // import { withRouter } from 'react-router-dom'
 import {
   Form,
@@ -153,6 +154,7 @@ class BucketEdit extends Component {
           <hr />
         </Container>
         <TaskList targetBucket={this.state.targetBucket} />
+        <TaskAdd targetBucket={this.state.targetBucket} />
       </div>
     );
   }
