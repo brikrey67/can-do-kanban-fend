@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./BucketAdd.css";
 import axios from "axios";
+import BENDURL from "../../constants.js";
 import { withRouter } from "react-router-dom";
 import {
   Col,
@@ -40,7 +41,7 @@ class BucketAdd extends Component {
   }
 
   componentDidUpdate() {
-    let newBucket = {
+    this.newBucket = {
       bOrder: this.state.order,
       bTitle: this.state.title,
       bDesc: this.state.desc,
@@ -51,12 +52,10 @@ class BucketAdd extends Component {
 
   onAddBucketSubmit(e) {
     // e.preventDefault();
-    axios
-      .post("https://can-do-kanban-bend.herokuapp.com/bucket", this.newBucket)
-      .then(data => {
-        console.log(data);
-        this.props.history.push("/buckets");
-      });
+    axios.post(BENDURL + "/bucket", this.newBucket).then(data => {
+      console.log(data);
+      this.props.history.push("/buckets");
+    });
   }
 
   render() {

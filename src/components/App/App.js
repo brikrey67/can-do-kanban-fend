@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-// import logo from "../../logo.svg";
 import "./App.css";
 
 import Signup from "../Signup/Signup.js";
@@ -7,68 +6,10 @@ import Login from "../Login/Login.js";
 import Buckets from "../Buckets/Buckets.js";
 import BucketDetail from "../BucketDetail/BucketDetail.js";
 
-import { Route, Link, Redirect, Switch } from "react-router-dom";
-// import axios from "axios";
+import { Route, Link, Switch } from "react-router-dom";
 import "./App.css";
 
-// const buckets = [
-//   {
-//     bOrder: 1,
-//     bTitle: "backlog",
-//     bDesc: "bucket of tasks that might get executed",
-//     intCrit:
-//       "tasks or ideas seems to have business value, but hasn't been validated",
-//     exCrit: "tasks or ideas have been validated as valuable and affordable"
-//   },
-//   {
-//     bOrder: 2,
-//     bTitle: "to-do",
-//     bDesc: "bucket of tasks that are planned for execution",
-//     intCrit: "tasks or ideas have been validated as valuable and affordable",
-//     exCrit: "tasks or ideas that will be taken on next"
-//   },
-//   {
-//     bOrder: 3,
-//     bTitle: "in-progress",
-//     bDesc: "bucket of tasks that are being activily worked on",
-//     intCrit: "tasks or ideas that will be taken on next",
-//     exCrit: "tasks or ideas have been completed"
-//   },
-//   {
-//     bOrder: 4,
-//     bTitle: "completed",
-//     bDesc: "bucket of tasks that have been completed",
-//     intCrit: "tasks or ideas that have no remaining work",
-//     exCrit: "tasks or ideas can be archived"
-//   }
-// ];
-
 class App extends Component {
-  constructor(props) {
-    super(props);
-    // initialize state
-    // this.state = {
-    //   buckets: []
-    // };
-  }
-
-  // setBucket(data) {
-  //   this.setState({
-  //     targetBucket: data
-  //   });
-  // }
-
-  // from react-router lab
-  // componentDidMount() {
-  //   axios
-  //     .get("https://can-do-kanban-bend.herokuapp.com/bucket")
-  //     .then(response => {
-  //       this.setState({
-  //         buckets: response.data
-  //       });
-  //     });
-  // }
-
   render() {
     return (
       <div>
@@ -82,8 +23,6 @@ class App extends Component {
           <Switch>
             <Route path="/signup" render={() => <Signup />} />
             <Route path="/login" render={() => <Login />} />
-            {/* <Route exact path="/buckets" render={props => <Buckets {...props} buckets={this.state.buckets} />} /> */}
-            {/* <Route exact path="/buckets" component={Buckets} /> */}
             <Route
               exact
               path="/buckets"

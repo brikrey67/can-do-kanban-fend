@@ -3,6 +3,7 @@ import axios from "axios";
 // import { Redirect } from "react-router-dom";
 import { withRouter } from "react-router-dom";
 import "./BucketDetail.css";
+import BENDURL from "../../constants.js";
 
 class BucketDetail extends Component {
   constructor(props) {
@@ -15,29 +16,19 @@ class BucketDetail extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get(
-        "https://can-do-kanban-bend.herokuapp.com/bucket/" +
-          this.state.targetBucket
-      )
-      .then(response => {
-        this.setState({
-          bucketDetail: response.data
-        });
+    axios.get(BENDURL + "/bucket/" + this.state.targetBucket).then(response => {
+      this.setState({
+        bucketDetail: response.data
       });
+    });
   }
 
   // redirect based on: https://stackoverflow.com/questions/34735580/how-to-do-a-redirect-to-another-route-with-react-router
   bucketDelete(e) {
     e.preventDefault();
-    axios
-      .delete(
-        "https://can-do-kanban-bend.herokuapp.com/bucket/" +
-          this.state.targetBucket
-      )
-      .then(() => {
-        this.props.history.push("/buckets");
-      });
+    axios.delete(BENDURL + "/bucket/" + this.state.targetBucket).then(() => {
+      this.props.history.push("/buckets");
+    });
   }
 
   render() {

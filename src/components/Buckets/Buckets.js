@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 // import App from "../App/App.js";
 import "./Buckets.css";
+import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
 import BucketAdd from "../BucketAdd/BucketAdd.js";
 
@@ -15,13 +16,11 @@ class Buckets extends Component {
   }
 
   componentDidMount() {
-    axios
-      .get("https://can-do-kanban-bend.herokuapp.com/bucket")
-      .then(response => {
-        this.setState({
-          buckets: response.data
-        });
+    axios.get(BENDURL + "/bucket").then(response => {
+      this.setState({
+        buckets: response.data
       });
+    });
   }
 
   render() {
