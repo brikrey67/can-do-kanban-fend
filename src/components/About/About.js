@@ -1,12 +1,12 @@
 import React, { Component } from "react";
-import "./Login.css";
+import "./About.css";
 
 class Login extends Component {
   render() {
     return (
       <div id="login-body">
-        <h3>Login</h3>
-        <p>Not part of MPV</p>
+        <h3>About</h3>
+        <p>Mongo-Express-React-Node (MERN) kanban app</p>
       </div>
     );
   }

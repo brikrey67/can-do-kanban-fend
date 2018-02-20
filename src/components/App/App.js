@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Signup from "../Signup/Signup.js";
-import Login from "../Login/Login.js";
+import Signup from "../About/About.js";
 import Buckets from "../Buckets/Buckets.js";
 import BucketDetail from "../BucketDetail/BucketDetail.js";
 
-import { Route, Link, Switch } from "react-router-dom";
+import { Route, Link, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
 class App extends Component {
@@ -14,27 +13,20 @@ class App extends Component {
     return (
       <div>
         <nav>
-          <h1>Can-Do-Kanban</h1>
-          <Link to="/signup">Signup</Link>
-          <Link to="/login">Login</Link>
+          <h1>Kanban</h1>
           <Link to="/buckets">Buckets</Link>
+          <Link to="/about">About</Link>
         </nav>
         <main>
           <Switch>
-            <Route path="/signup" render={() => <Signup />} />
-            <Route path="/login" render={() => <Login />} />
+            <Route path="/about" render={() => <About />} />
             <Route
               exact
               path="/buckets"
               render={props => <Buckets {...props} />}
             />
-            {/* <Route
-              path="/buckets/:bucket"
-              render={props => <BucketDetail {...props} />}
-            /> */}
-
             <Route path="/buckets/:bTitle" component={BucketDetail} />
-            {/* <Route path="/*" render={() => <Redirect to="/buckets" />} /> */}
+            <Route path="/*" render={() => <Redirect to="/buckets" />} />
           </Switch>
         </main>
       </div>
