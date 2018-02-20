@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./BucketEdit.css";
 import axios from "axios";
+import TaskList from "../TaskList/TaskList.js";
 // import { withRouter } from 'react-router-dom'
 import {
   Form,
@@ -149,7 +150,9 @@ class BucketEdit extends Component {
               delete
             </Button>
           </Form>
+          <hr />
         </Container>
+        <TaskList targetBucket={this.state.targetBucket} />
       </div>
     );
   }
