@@ -5,6 +5,7 @@ import "./Buckets.css";
 import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
 import BucketAdd from "../BucketAdd/BucketAdd.js";
+import { Container } from "reactstrap";
 
 class Buckets extends Component {
   constructor(props) {
@@ -32,8 +33,9 @@ class Buckets extends Component {
             <Link
               to={`${this.props.match.url}/${bucket.bTitle}`}
               onClick={this.props.setBucket}
+              className="text-info"
             >
-              <span id="bucket-name">{bucket.bTitle}</span>{" "}
+              {bucket.bTitle}
             </Link>- <span id="bucket-desc">{bucket.bDesc}</span>
           </p>
         </div>
@@ -41,8 +43,10 @@ class Buckets extends Component {
     });
     return (
       <div>
-        {buckets}
-        <BucketAdd history={history} />
+        <Container>
+          {buckets}
+          <BucketAdd history={history} />
+        </Container>
       </div>
     );
   }

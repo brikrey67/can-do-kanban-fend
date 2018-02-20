@@ -1,22 +1,55 @@
 import React, { Component } from "react";
 import "./App.css";
 
-import Signup from "../About/About.js";
+import About from "../About/About.js";
 import Buckets from "../Buckets/Buckets.js";
 import BucketDetail from "../BucketDetail/BucketDetail.js";
 
 import { Route, Link, Switch, Redirect } from "react-router-dom";
 import "./App.css";
 
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink
+} from "reactstrap";
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.toggleNavbar = this.toggleNavbar.bind(this);
+    this.state = {
+      collapsed: true
+    };
+  }
+
+  toggleNavbar() {
+    this.setState({
+      collapsed: !this.state.collapsed
+    });
+  }
+
   render() {
     return (
       <div>
-        <nav>
-          <h1>Kanban</h1>
-          <Link to="/buckets">Buckets</Link>
-          <Link to="/about">About</Link>
-        </nav>
+        <Navbar className="bg-info" light>
+          <NavbarBrand href="/buckets" className="mr-auto">
+            buckets
+          </NavbarBrand>
+          <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
+          <Collapse isOpen={!this.state.collapsed} navbar>
+            <Nav navbar>
+              <NavItem>
+                <NavLink href="/about">About</NavLink>
+              </NavItem>
+            </Nav>
+          </Collapse>
+        </Navbar>
         <main>
           <Switch>
             <Route path="/about" render={() => <About />} />

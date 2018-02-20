@@ -5,8 +5,7 @@ class Login extends Component {
   render() {
     return (
       <div id="login-body">
-        <h3>About</h3>
-        <p>Mongo-Express-React-Node (MERN) kanban app</p>
+        <p>This Mongo-Express-React-Node (MERN) implementation of a kanban</p>
       </div>
     );
   }

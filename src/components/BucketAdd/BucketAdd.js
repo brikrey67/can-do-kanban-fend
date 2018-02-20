@@ -8,6 +8,8 @@ import {
   Button,
   Form,
   FormGroup,
+  Container,
+  Collapse,
   Label,
   Input,
   FormText
@@ -21,12 +23,13 @@ class BucketAdd extends Component {
       title: "",
       desc: "",
       enterCrit: "",
-      exitCrit: ""
-      // newBucket: {}
+      exitCrit: "",
+      collapse: false
     };
 
     this.onAddBucketSubmit = this.onAddBucketSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.toggle = this.toggle.bind(this);
   }
 
   // sourced from https://reactjs.org/docs/forms.html#handling-multiple-inputs
@@ -50,6 +53,10 @@ class BucketAdd extends Component {
     };
   }
 
+  toggle() {
+    this.setState({ collapse: !this.state.collapse });
+  }
+
   onAddBucketSubmit(e) {
     // e.preventDefault();
     axios.post(BENDURL + "/bucket", this.newBucket).then(data => {
@@ -60,61 +67,70 @@ class BucketAdd extends Component {
 
   render() {
     return (
-      <div className="form" id="bucket-add-body">
-        <hr />
-        <Form onSubmit={this.onAddBucketSubmit}>
-          <FormGroup>
-            <Label for="orderInput">Order:</Label>
-            <Input
-              type="number"
-              name="order"
-              id="orderInput"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+      <div>
+        <Container>
+          <hr />
+          <button className="btn btn-secondary" onClick={this.toggle}>
+            ...
+          </button>
+          <hr />
+          <Collapse isOpen={this.state.collapse}>
+            <Form onSubmit={this.onAddBucketSubmit}>
+              <FormGroup>
+                <Label for="orderInput">order:</Label>
+                <Input
+                  type="number"
+                  name="order"
+                  id="orderInput"
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
 
-          <FormGroup>
-            <Label for="titleInput">Title:</Label>
-            <Input
-              type="text"
-              name="title"
-              id="titleInput"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+              <FormGroup>
+                <Label for="titleInput">title:</Label>
+                <Input
+                  type="text"
+                  name="title"
+                  id="titleInput"
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
 
-          <FormGroup>
-            <Label for="descInput">Description:</Label>
-            <Input
-              type="textarea"
-              name="desc"
-              id="descInput"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+              <FormGroup>
+                <Label for="descInput">description:</Label>
+                <Input
+                  type="textarea"
+                  name="desc"
+                  id="descInput"
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
 
-          <FormGroup>
-            <Label for="enterCritInput">Entrance Criteria:</Label>
-            <Input
-              type="textarea"
-              name="enterCrit"
-              id="enterCritInput"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
+              <FormGroup>
+                <Label for="enterCritInput">entrance criteria:</Label>
+                <Input
+                  type="textarea"
+                  name="enterCrit"
+                  id="enterCritInput"
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
 
-          <FormGroup>
-            <Label for="exitCritInput">Exit Criteria:</Label>
-            <Input
-              type="textarea"
-              name="exitCrit"
-              id="exitCritInput"
-              onChange={this.handleInputChange}
-            />
-          </FormGroup>
-
-          <input type="submit" value="Add Bucket" />
-        </Form>
+              <FormGroup>
+                <Label for="exitCritInput">exit criteria:</Label>
+                <Input
+                  type="textarea"
+                  name="exitCrit"
+                  id="exitCritInput"
+                  onChange={this.handleInputChange}
+                />
+              </FormGroup>
+              <button className="btn btn-secondary" type="submit">
+                add bucket
+              </button>
+            </Form>
+          </Collapse>
+        </Container>
       </div>
     );
   }
