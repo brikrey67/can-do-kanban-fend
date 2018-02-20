@@ -24,6 +24,21 @@ class TaskList extends Component {
     });
   }
 
+  // sourced from: https://codepen.io/austinlyons/pen/YpmyJB
+  compareBy(key) {
+    return function(a, b) {
+      if (a[key] < b[key]) return -1;
+      if (a[key] > b[key]) return 1;
+      return 0;
+    };
+  }
+
+  sortBy(key) {
+    let tasksCopy = [...this.state.tasks];
+    tasksCopy.sort(this.compareBy(key));
+    this.setState({ tasks: tasksCopy });
+  }
+
   render() {
     console.log("XXX " + this.state.addedTask);
     let { history } = this.props;
@@ -51,12 +66,22 @@ class TaskList extends Component {
     return (
       <div>
         <Container>
-          <Row>
-            <Col xs="4">Task</Col>
-            <Col xs="2">Importance</Col>
-            <Col xs="2">Points</Col>
-            <Col xs="2">Status</Col>
-            <Col xs="2">Due Date</Col>
+          <Row className="bg-info task-header">
+            <Col xs="4" onClick={() => this.sortBy("tTitle")}>
+              Task
+            </Col>
+            <Col xs="2" onClick={() => this.sortBy("importance")}>
+              Importance
+            </Col>
+            <Col xs="2" onClick={() => this.sortBy("points")}>
+              Points
+            </Col>
+            <Col xs="2" onClick={() => this.sortBy("status")}>
+              Status
+            </Col>
+            <Col xs="2" onClick={() => this.sortBy("dueDate")}>
+              Due Date
+            </Col>
           </Row>
           {tasks}
           {/* <TaskAdd history={history} /> */}
