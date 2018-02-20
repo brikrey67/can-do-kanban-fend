@@ -30,15 +30,21 @@ class TaskList extends Component {
     let tasks = this.state.tasks.map((task, index) => {
       return (
         <div key={index}>
-          <p>
-            <Link
-              to={`${BENDURL}/bucket/${this.props.targetBucket}/${task._id}`}
-              onClick={this.props.setBucket}
-              className="text-info"
-            >
-              {task.tTitle}
-            </Link>- <span id="bucket-desc">{task.tDesc}</span>
-          </p>
+          <Row>
+            <Col xs="4">
+              <Link
+                to={`${BENDURL}/bucket/${this.props.targetBucket}/${task._id}`}
+                onClick={this.props.setBucket}
+                className="text-info"
+              >
+                {task.tTitle}
+              </Link>
+            </Col>
+            <Col xs="2">{task.importance}</Col>
+            <Col xs="2">{task.points}</Col>
+            <Col xs="2">{task.status}</Col>
+            <Col xs="2">{task.dueDate}</Col>
+          </Row>
         </div>
       );
     });
