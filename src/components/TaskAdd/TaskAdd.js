@@ -20,7 +20,7 @@ class TaskAdd extends Component {
       tTitle: "",
       tDesc: "",
       importance: "",
-      points: "",
+      points: 0,
       status: "",
       dueDate: "",
       targetBucket: this.props.targetBucket,
@@ -45,7 +45,6 @@ class TaskAdd extends Component {
 
   componentDidUpdate() {
     this.newTask = {
-      bTitle: this.state.targetBucket,
       tTitle: this.state.tTitle,
       tDesc: this.state.tDesc,
       importance: this.state.importance,
@@ -53,6 +52,7 @@ class TaskAdd extends Component {
       status: this.state.status,
       dueDate: this.state.dueDate
     };
+    console.log(this.newTask);
   }
 
   toggle() {
@@ -62,10 +62,9 @@ class TaskAdd extends Component {
   onAddTaskSubmit(e) {
     // e.preventDefault();
     axios
-      .put(BENDURL + "/bucket/" + this.state.targetBucket, this.newTask)
-      .then(data => {
-        console.log(data);
-        this.props.history.push("/buckets");
+      .patch(BENDURL + "/bucket/" + this.state.targetBucket, this.newTask)
+      .then(patchData => {
+        this.props.handleTaskAdd();
       });
   }
 

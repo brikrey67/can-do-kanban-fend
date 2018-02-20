@@ -59,7 +59,11 @@ class App extends Component {
               path="/buckets"
               render={props => <Buckets {...props} />}
             />
-            <Route path="/buckets/:bTitle" component={BucketEdit} />
+            <Route
+              path="/buckets/:bTitle"
+              render={props => <BucketEdit {...props} />}
+            />
+
             <Route path="/*" render={() => <Redirect to="/buckets" />} />
           </Switch>
         </main>

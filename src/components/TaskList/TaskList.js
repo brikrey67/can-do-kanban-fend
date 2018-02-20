@@ -4,6 +4,7 @@ import "./TaskList.css";
 import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Progress } from "reactstrap";
+import TaskAdd from "../TaskAdd/TaskAdd.js";
 
 class TaskList extends Component {
   constructor(props) {
@@ -13,9 +14,18 @@ class TaskList extends Component {
       tasks: [],
       targetBucket: this.props.targetBucket
     };
+    this.handleTaskAdd = this.handleTaskAdd.bind(this);
   }
 
   componentDidMount() {
+    axios.get(BENDURL + "/bucket/" + this.props.targetBucket).then(response => {
+      this.setState({
+        tasks: response.data.addedTask
+      });
+    });
+  }
+
+  handleTaskAdd() {
     axios.get(BENDURL + "/bucket/" + this.props.targetBucket).then(response => {
       this.setState({
         tasks: response.data.addedTask
@@ -89,6 +99,10 @@ class TaskList extends Component {
           </Row>
           {tasks}
         </Container>
+        <TaskAdd
+          targetBucket={this.state.targetBucket}
+          handleTaskAdd={this.handleTaskAdd}
+        />
       </div>
     );
   }
