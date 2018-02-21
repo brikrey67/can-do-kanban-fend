@@ -76,7 +76,9 @@ class TaskAdd extends Component {
         <Container>
           <hr />
           <button className="btn btn-secondary" onClick={this.toggle}>
-            ...
+            <span>
+              <i className="material-icons">add_box</i>
+            </span>
           </button>
           <hr />
           <Collapse isOpen={this.state.collapse}>

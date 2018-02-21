@@ -58,6 +58,11 @@ class TaskList extends Component {
                 to={`${this.props.match.url}/${task._id}`}
                 className="text-info"
               >
+                {" "}
+                <span>
+                  <i className="material-icons">input</i>
+                </span>{" "}
+                {"  "}
                 {task.tTitle}
               </Link>
             </Col>

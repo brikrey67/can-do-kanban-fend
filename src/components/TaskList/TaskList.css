@@ -2,3 +2,7 @@
   cursor: pointer;
   margin-bottom: 10px;
 }
+
+.material-icons {
+  vertical-align: bottom;
+}

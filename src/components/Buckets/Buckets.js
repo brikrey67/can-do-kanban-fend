@@ -34,6 +34,10 @@ class Buckets extends Component {
               to={`${this.props.match.url}/${bucket.bTitle}`}
               className="text-info"
             >
+              <span>
+                <i className="material-icons">list</i>
+              </span>{" "}
+              {"  "}
               {bucket.bTitle}
             </Link>- <span id="bucket-desc">{bucket.bDesc}</span>
           </p>
