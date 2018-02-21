@@ -5,7 +5,7 @@ import "./Buckets.css";
 import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
 import BucketAdd from "../BucketAdd/BucketAdd.js";
-import { Container } from "reactstrap";
+import { Container, Breadcrumb, BreadcrumbItem } from "reactstrap";
 
 class Buckets extends Component {
   constructor(props) {
@@ -47,6 +47,11 @@ class Buckets extends Component {
     return (
       <div>
         <Container>
+          <hr />
+          <Breadcrumb>
+            <BreadcrumbItem active>buckets</BreadcrumbItem>
+          </Breadcrumb>
+          <hr />
           {buckets}
           <BucketAdd history={history} />
         </Container>

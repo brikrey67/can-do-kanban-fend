@@ -1,12 +1,15 @@
 import React, { Component } from "react";
 import "./TaskEdit.css";
 import axios from "axios";
+import { Link } from "react-router-dom";
 import {
   Form,
   FormGroup,
   Row,
   Col,
   Container,
+  Breadcrumb,
+  BreadcrumbItem,
   Button,
   Label,
   Input
@@ -112,119 +115,140 @@ class TaskEdit extends Component {
       "/" +
       this.props.match.params._id;
     return (
-      <div className="form">
+      <div>
         <Container>
-          <Form onSubmit={this.onEditTaskSubmit}>
-            <Row>
-              <Col xs="12">
-                <FormGroup>
-                  <Label for="titleInput">title:</Label>
-                  <Input
-                    type="text"
-                    name="tTitle"
-                    value={this.state.tTitle}
-                    id="titleInput"
-                    required="true"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="12">
-                <FormGroup>
-                  <Label for="descInput">description:</Label>
-                  <Input
-                    type="textarea"
-                    name="tDesc"
-                    value={this.state.tDesc}
-                    id="descInput"
-                    color="info"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="6">
-                <FormGroup>
-                  <Label for="impInput">importance:</Label>
-                  <Input
-                    type="select"
-                    name="importance"
-                    value={this.state.importance}
-                    id="impInput"
-                    onChange={this.handleInputChange}
-                  >
-                    <option>Select importance...</option>
-                    <option>Very Low</option>
-                    <option>Low </option>
-                    <option>Moderate</option>
-                    <option>High</option>
-                    <option>Very High</option>
-                    <option>Critical</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-              <Col xs="6">
-                <FormGroup>
-                  <Label for="pointsInput">points:</Label>
-                  <Input
-                    type="select"
-                    name="points"
-                    value={this.state.points}
-                    id="pointsInput"
-                    onChange={this.handleInputChange}
-                  >
-                    <option>Estimate points...</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>5</option>
-                    <option>8</option>
-                    <option>13</option>
-                    <option>21</option>
-                    <option>34</option>
-                  </Input>
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="6">
-                <FormGroup>
-                  <Label for="statusInput">status:</Label>
-                  <Input
-                    type="number"
-                    name="status"
-                    value={this.state.status}
-                    id="statusInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-              <Col xs="6">
-                <FormGroup>
-                  <Label for="dueDateInput">due date:</Label>
-                  <Input
-                    type="date"
-                    name="dueDate"
-                    value={this.state.dueDate}
-                    id="dueDateInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Button className="btn btn-secondary" type="submit">
-              update
-            </Button>
-            {"  "}
-            <Button className="btn btn-secondary" onClick={this.taskDelete}>
-              delete
-            </Button>
-            <hr />
-          </Form>
           <hr />
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/buckets" className="text-info">
+                buckets
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem>
+              {" "}
+              <Link
+                to={`/buckets/${this.state.targetBucket}`}
+                className="text-info"
+              >
+                {this.state.targetBucket}
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>{this.state.tTitle}</BreadcrumbItem>
+          </Breadcrumb>
+          <hr />
+          <div className="form">
+            <Form onSubmit={this.onEditTaskSubmit}>
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label for="titleInput">title:</Label>
+                    <Input
+                      type="text"
+                      name="tTitle"
+                      value={this.state.tTitle}
+                      id="titleInput"
+                      required="true"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label for="descInput">description:</Label>
+                    <Input
+                      type="textarea"
+                      name="tDesc"
+                      value={this.state.tDesc}
+                      id="descInput"
+                      color="info"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="impInput">importance:</Label>
+                    <Input
+                      type="select"
+                      name="importance"
+                      value={this.state.importance}
+                      id="impInput"
+                      onChange={this.handleInputChange}
+                    >
+                      <option>Select importance...</option>
+                      <option>Very Low</option>
+                      <option>Low </option>
+                      <option>Moderate</option>
+                      <option>High</option>
+                      <option>Very High</option>
+                      <option>Critical</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="pointsInput">points:</Label>
+                    <Input
+                      type="select"
+                      name="points"
+                      value={this.state.points}
+                      id="pointsInput"
+                      onChange={this.handleInputChange}
+                    >
+                      <option>Estimate points...</option>
+                      <option>1</option>
+                      <option>2</option>
+                      <option>3</option>
+                      <option>5</option>
+                      <option>8</option>
+                      <option>13</option>
+                      <option>21</option>
+                      <option>34</option>
+                    </Input>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="statusInput">status:</Label>
+                    <Input
+                      type="number"
+                      name="status"
+                      value={this.state.status}
+                      id="statusInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="dueDateInput">due date:</Label>
+                    <Input
+                      type="date"
+                      name="dueDate"
+                      value={this.state.dueDate}
+                      id="dueDateInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Button className="btn btn-secondary" type="submit">
+                update
+              </Button>
+              {"  "}
+              <Button className="btn btn-secondary" onClick={this.taskDelete}>
+                delete
+              </Button>
+              <hr />
+            </Form>
+            <hr />
+          </div>
         </Container>
         <Container>
           <Form onSubmit={this.onMoveTaskSubmit}>

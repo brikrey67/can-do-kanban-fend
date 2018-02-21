@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./BucketEdit.css";
 import axios from "axios";
 import TaskList from "../TaskList/TaskList.js";
-// import { withRouter } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import {
   Form,
   FormGroup,
@@ -10,6 +10,8 @@ import {
   Col,
   Container,
   Button,
+  Breadcrumb,
+  BreadcrumbItem,
   Label,
   Input
 } from "reactstrap";
@@ -85,84 +87,96 @@ class BucketEdit extends Component {
 
   render() {
     return (
-      <div className="form">
+      <div>
         <Container>
-          <Form onSubmit={this.onEditBucketSubmit}>
-            <Row>
-              <Col xs="3">
-                <FormGroup>
-                  <Label for="orderInput">order:</Label>
-                  <Input
-                    type="number"
-                    value={this.state.bOrder}
-                    name="bOrder"
-                    id="orderInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-              <Col xs="9">
-                <FormGroup>
-                  <Label for="titleInput">title:</Label>
-                  <Input
-                    type="text"
-                    value={this.state.bTitle}
-                    name="bTitle"
-                    id="titleInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="12">
-                <FormGroup>
-                  <Label for="descInput">description:</Label>
-                  <Input
-                    type="textarea"
-                    value={this.state.bDesc}
-                    name="bDesc"
-                    id="descInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Row>
-              <Col xs="6">
-                <FormGroup>
-                  <Label for="intCritInput">enterance criteria:</Label>
-                  <Input
-                    type="textarea"
-                    value={this.state.intCrit}
-                    name="intCrit"
-                    id="intCritInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-              <Col xs="6">
-                <FormGroup>
-                  <Label for="exCritInput">exit criteria:</Label>
-                  <Input
-                    type="textarea"
-                    value={this.state.exCrit}
-                    name="exCrit"
-                    id="exCritInput"
-                    onChange={this.handleInputChange}
-                  />
-                </FormGroup>
-              </Col>
-            </Row>
-            <Button className="btn btn-secondary" type="submit">
-              update
-            </Button>
-            {"  "}
-            <Button className="btn btn-secondary" onClick={this.bucketDelete}>
-              delete
-            </Button>
-          </Form>
           <hr />
+          <Breadcrumb>
+            <BreadcrumbItem>
+              <Link to="/buckets" className="text-info">
+                buckets
+              </Link>
+            </BreadcrumbItem>
+            <BreadcrumbItem active>{this.state.bTitle}</BreadcrumbItem>
+          </Breadcrumb>
+          <hr />
+          <div className="form">
+            <Form onSubmit={this.onEditBucketSubmit}>
+              <Row>
+                <Col xs="3">
+                  <FormGroup>
+                    <Label for="orderInput">order:</Label>
+                    <Input
+                      type="number"
+                      value={this.state.bOrder}
+                      name="bOrder"
+                      id="orderInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs="9">
+                  <FormGroup>
+                    <Label for="titleInput">title:</Label>
+                    <Input
+                      type="text"
+                      value={this.state.bTitle}
+                      name="bTitle"
+                      id="titleInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="12">
+                  <FormGroup>
+                    <Label for="descInput">description:</Label>
+                    <Input
+                      type="textarea"
+                      value={this.state.bDesc}
+                      name="bDesc"
+                      id="descInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="intCritInput">enterance criteria:</Label>
+                    <Input
+                      type="textarea"
+                      value={this.state.intCrit}
+                      name="intCrit"
+                      id="intCritInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+                <Col xs="6">
+                  <FormGroup>
+                    <Label for="exCritInput">exit criteria:</Label>
+                    <Input
+                      type="textarea"
+                      value={this.state.exCrit}
+                      name="exCrit"
+                      id="exCritInput"
+                      onChange={this.handleInputChange}
+                    />
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Button className="btn btn-secondary" type="submit">
+                update
+              </Button>
+              {"  "}
+              <Button className="btn btn-secondary" onClick={this.bucketDelete}>
+                delete
+              </Button>
+            </Form>
+            <hr />
+          </div>
         </Container>
         <TaskList targetBucket={this.state.targetBucket} {...this.props} />
       </div>
