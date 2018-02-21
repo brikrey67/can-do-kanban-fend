@@ -54,7 +54,7 @@ class TaskAdd extends Component {
       status: this.state.status,
       dueDate: this.state.dueDate
     };
-    console.log(this.newTask);
+    // console.log(this.newTask);
   }
 
   toggle() {
@@ -103,6 +103,7 @@ class TaskAdd extends Component {
                       type="textarea"
                       name="tDesc"
                       id="descInput"
+                      required="true"
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>
@@ -115,6 +116,7 @@ class TaskAdd extends Component {
                     <Input
                       type="select"
                       name="importance"
+                      required="true"
                       id="impInput"
                       onChange={this.handleInputChange}
                     >
@@ -134,10 +136,11 @@ class TaskAdd extends Component {
                     <Input
                       type="select"
                       name="points"
+                      required="true"
                       id="pointsInput"
                       onChange={this.handleInputChange}
                     >
-                      <option>Estimate points...</option>
+                      <option>Select points... </option>
                       <option>1</option>
                       <option>2</option>
                       <option>3</option>
@@ -153,10 +156,11 @@ class TaskAdd extends Component {
               <Row>
                 <Col xs="6">
                   <FormGroup>
-                    <Label for="statusInput">status:</Label>
+                    <Label for="statusInput">% Complete:</Label>
                     <Input
                       type="number"
                       name="status"
+                      required="true"
                       id="statusInput"
                       onChange={this.handleInputChange}
                     />
@@ -169,6 +173,7 @@ class TaskAdd extends Component {
                       type="date"
                       name="dueDate"
                       id="dueDateInput"
+                      required="true"
                       onChange={this.handleInputChange}
                     />
                   </FormGroup>

@@ -5,7 +5,6 @@ import BENDURL from "../../constants.js";
 import { Link } from "react-router-dom";
 import { Container, Row, Col, Progress } from "reactstrap";
 import TaskAdd from "../TaskAdd/TaskAdd.js";
-import TaskEdit from "../TaskEdit/TaskEdit.js";
 
 class TaskList extends Component {
   constructor(props) {
@@ -50,7 +49,6 @@ class TaskList extends Component {
   }
 
   render() {
-    let { history } = this.props;
     let tasks = this.state.tasks.map((task, index) => {
       return (
         <div key={index}>
@@ -91,7 +89,7 @@ class TaskList extends Component {
               Points
             </Col>
             <Col xs="2" onClick={() => this.sortBy("status")}>
-              Status
+              % Complete
             </Col>
             <Col xs="2" onClick={() => this.sortBy("dueDate")}>
               Due Date

@@ -78,35 +78,32 @@ class TaskEdit extends Component {
 
   onEditTaskSubmit(e) {
     e.preventDefault();
-    console.log("editTask: " + this.editTask);
-    axios
-      .put(
-        BENDURL +
-          "/bucket/" +
-          this.state.targetBucket +
-          "/" +
-          this.state.targetTask,
-        this.editTask
-      )
-      .then(data => {
-        console.log("HERE WE ARE");
-        this.props.history.push("/buckets/" + this.state.targetBucket);
-      });
+    let PATH =
+      BENDURL +
+      "/bucket/" +
+      this.state.targetBucket +
+      "/" +
+      this.state.targetTask;
+    // console.log("PATH: " + PATH);
+    // console.log("EDITTASK: " + this.editTask);
+    // console.log("HISTORY: " + this.props.history);
+    axios.put(PATH, this.editTask).then(response => {
+      this.props.history.push("/buckets/" + this.state.targetBucket);
+    });
   }
 
   taskDelete(e) {
     e.preventDefault();
-    axios
-      .delete(
-        BENDURL +
-          "/bucket/" +
-          this.state.targetBucket +
-          "/" +
-          this.state.targetTask
-      )
-      .then(() => {
-        this.props.history.push("/buckets/" + this.state.targetBucket);
-      });
+    let PATH =
+      BENDURL +
+      "/bucket/" +
+      this.state.targetBucket +
+      "/" +
+      this.state.targetTask;
+    // console.log("PATH: " + PATH);
+    axios.delete(PATH).then(response => {
+      this.props.history.push("/buckets/" + this.state.targetBucket);
+    });
   }
 
   render() {
