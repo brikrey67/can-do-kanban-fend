@@ -25,7 +25,9 @@ class TaskEdit extends Component {
       status: "",
       dueDate: "",
       targetBucket: this.props.match.params.bTitle,
-      targetTask: this.props.match.params._id
+      targetTask: this.props.match.params._id,
+      listBuckets: [],
+      moveToBucket: ""
     };
 
     this.onEditTaskSubmit = this.onEditTaskSubmit.bind(this);
@@ -44,12 +46,13 @@ class TaskEdit extends Component {
       )
       .then(response => {
         this.setState({
-          tTitle: response.data.tTitle,
-          tDesc: response.data.tDesc,
-          importance: response.data.importance,
-          points: response.data.points,
-          status: response.data.status,
-          dueDate: response.data.dueDate
+          tTitle: response.data.taskData.tTitle,
+          tDesc: response.data.taskData.tDesc,
+          importance: response.data.taskData.importance,
+          points: response.data.taskData.points,
+          status: response.data.taskData.status,
+          dueDate: response.data.taskData.dueDate,
+          listBuckets: response.data.bucketList
         });
       });
   }
@@ -92,6 +95,8 @@ class TaskEdit extends Component {
     });
   }
 
+  onMoveTaskSubmit(e) {}
+
   taskDelete(e) {
     e.preventDefault();
     let PATH =
@@ -107,6 +112,9 @@ class TaskEdit extends Component {
   }
 
   render() {
+    let listBuckets = this.state.listBuckets.map((listBucket, index) => {
+      return <option>{listBucket.bTitle}</option>;
+    });
     return (
       <div className="form">
         <Container>
@@ -135,6 +143,7 @@ class TaskEdit extends Component {
                     name="tDesc"
                     value={this.state.tDesc}
                     id="descInput"
+                    color="info"
                     onChange={this.handleInputChange}
                   />
                 </FormGroup>
@@ -219,6 +228,28 @@ class TaskEdit extends Component {
             </Button>
           </Form>
           <hr />
+        </Container>
+        <Container>
+          <Form onSubmit={this.onMoveTaskSubmit}>
+            <Row>
+              <Col xs="12">
+                <FormGroup>
+                  <Label for="moveInput">move to bucket:</Label>
+                  <Input
+                    type="select"
+                    name="moveToBucket"
+                    id="moveInput"
+                    onChange={this.handleInputChange}
+                  >
+                    {listBuckets}
+                  </Input>
+                </FormGroup>
+              </Col>
+            </Row>
+            <Button className="btn btn-secondary" type="submit">
+              move
+            </Button>
+          </Form>
         </Container>
       </div>
     );
