@@ -27,34 +27,29 @@ class TaskEdit extends Component {
       targetBucket: this.props.match.params.bTitle,
       targetTask: this.props.match.params._id,
       listBuckets: [],
-      moveToBucket: ""
+      moveToBucketId: "",
+      taskData: {}
     };
 
     this.onEditTaskSubmit = this.onEditTaskSubmit.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.onMoveTaskSubmit = this.onMoveTaskSubmit.bind(this);
     this.taskDelete = this.taskDelete.bind(this);
   }
 
   componentDidMount() {
-    axios
-      .get(
-        BENDURL +
-          "/bucket/" +
-          this.state.targetBucket +
-          "/" +
-          this.state.targetTask
-      )
-      .then(response => {
-        this.setState({
-          tTitle: response.data.taskData.tTitle,
-          tDesc: response.data.taskData.tDesc,
-          importance: response.data.taskData.importance,
-          points: response.data.taskData.points,
-          status: response.data.taskData.status,
-          dueDate: response.data.taskData.dueDate,
-          listBuckets: response.data.bucketList
-        });
+    axios.get(this.axiosURL).then(response => {
+      this.setState({
+        tTitle: response.data.taskData.tTitle,
+        tDesc: response.data.taskData.tDesc,
+        importance: response.data.taskData.importance,
+        points: response.data.taskData.points,
+        status: response.data.taskData.status,
+        dueDate: response.data.taskData.dueDate,
+        listBuckets: response.data.bucketList,
+        taskData: response.data.taskData
       });
+    });
   }
 
   // sourced from https://reactjs.org/docs/forms.html#handling-multiple-inputs
@@ -81,40 +76,41 @@ class TaskEdit extends Component {
 
   onEditTaskSubmit(e) {
     e.preventDefault();
-    let PATH =
-      BENDURL +
-      "/bucket/" +
-      this.state.targetBucket +
-      "/" +
-      this.state.targetTask;
-    // console.log("PATH: " + PATH);
-    // console.log("EDITTASK: " + this.editTask);
-    // console.log("HISTORY: " + this.props.history);
-    axios.put(PATH, this.editTask).then(response => {
+    axios.put(this.axiosURL, this.editTask).then(response => {
       this.props.history.push("/buckets/" + this.state.targetBucket);
     });
   }
 
-  onMoveTaskSubmit(e) {}
+  onMoveTaskSubmit(e) {
+    e.preventDefault();
+    console.log(this.axiosURL);
+    axios
+      .patch(this.axiosURL, {
+        taskData: this.state.taskData,
+        moveToBucketId: this.state.moveToBucketId
+      })
+      .then(response => {
+        this.props.history.push("/buckets/" + this.state.targetBucket);
+      });
+  }
 
   taskDelete(e) {
     e.preventDefault();
-    let PATH =
-      BENDURL +
-      "/bucket/" +
-      this.state.targetBucket +
-      "/" +
-      this.state.targetTask;
-    // console.log("PATH: " + PATH);
-    axios.delete(PATH).then(response => {
+    axios.delete(this.axiosURL).then(response => {
       this.props.history.push("/buckets/" + this.state.targetBucket);
     });
   }
 
   render() {
     let listBuckets = this.state.listBuckets.map((listBucket, index) => {
-      return <option>{listBucket.bTitle}</option>;
+      return <option value={listBucket._id}>{listBucket.bTitle}</option>;
     });
+    this.axiosURL =
+      BENDURL +
+      "/bucket/" +
+      this.props.match.params.bTitle +
+      "/" +
+      this.props.match.params._id;
     return (
       <div className="form">
         <Container>
@@ -226,6 +222,7 @@ class TaskEdit extends Component {
             <Button className="btn btn-secondary" onClick={this.taskDelete}>
               delete
             </Button>
+            <hr />
           </Form>
           <hr />
         </Container>
@@ -237,10 +234,12 @@ class TaskEdit extends Component {
                   <Label for="moveInput">move to bucket:</Label>
                   <Input
                     type="select"
-                    name="moveToBucket"
+                    name="moveToBucketId"
                     id="moveInput"
+                    required="true"
                     onChange={this.handleInputChange}
                   >
+                    <option>Select target bucket...</option>
                     {listBuckets}
                   </Input>
                 </FormGroup>
